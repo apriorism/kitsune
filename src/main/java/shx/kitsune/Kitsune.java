@@ -15,6 +15,7 @@ public class Kitsune extends JavaPlugin implements Listener {
     public void onEnable() {
         plugin = this;
         Configuration.initDefaults();
+        Dependencies.checkDependencies();
 
         getServer().getPluginManager().registerEvents(this, this);
 
