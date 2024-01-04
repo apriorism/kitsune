@@ -9,12 +9,16 @@ import org.bukkit.event.server.PluginEnableEvent;
 
 public class Kitsune extends JavaPlugin implements Listener {
     private static Plugin plugin;
+    private Database database;
 
     @Override
     public void onEnable() {
         plugin = this;
         Configuration.initDefaults();
+
         getServer().getPluginManager().registerEvents(this, this);
+
+        database = new Database();
     }
 
     @Override
@@ -30,5 +34,9 @@ public class Kitsune extends JavaPlugin implements Listener {
 
     public static Plugin getPlugin() {
         return plugin;
+    }
+
+    public Database getDatabase() {
+        return database;
     }
 }
