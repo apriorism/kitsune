@@ -1,0 +1,7 @@
+name: kitsune
+version: 1.0
+main: shx.kitsune.Kitsune
+author: Shiro Interactive
+website: https://shiro.eu.org
+description: Kitsune Core
+api-version: '1.20'
