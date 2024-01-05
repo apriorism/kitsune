@@ -5,8 +5,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import shx.kitsune.scripting.ScriptManager;
 
-import java.util.logging.Logger;
-
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -16,6 +14,7 @@ public class Kitsune extends JavaPlugin implements Listener {
     private static Plugin plugin;
     private Database database;
     private ScriptManager scriptManager;
+    private StateStore stateStore;
 
     @Override
     public void onEnable() {
@@ -27,6 +26,7 @@ public class Kitsune extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(this, this);
 
         database = new Database();
+        stateStore = new StateStore();
         scriptManager = new ScriptManager();
     }
 
@@ -47,5 +47,9 @@ public class Kitsune extends JavaPlugin implements Listener {
 
     public Database getDatabase() {
         return database;
+    }
+
+    public StateStore getStateStore() {
+        return stateStore;
     }
 }
