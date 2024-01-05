@@ -1,5 +1,6 @@
 package shx.kitsune;
 
+import java.io.File;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -22,6 +23,12 @@ public class Dependencies {
             if ( !pluginManager.isPluginEnabled(plugin) ) {
                 logger.warning(Str.format("Plugin <{}> is not available.", plugin));
             }
+        }
+    }
+
+    static void checkScriptsFolder() {
+        if ( !Kitsune.getScriptFolder().exists() ) {
+            Kitsune.getScriptFolder().mkdirs();
         }
     }
 }

@@ -5,6 +5,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import shx.kitsune.scripting.ScriptManager;
 
+import java.io.File;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -12,6 +14,8 @@ import org.bukkit.event.server.PluginEnableEvent;
 
 public class Kitsune extends JavaPlugin implements Listener {
     private static Plugin plugin;
+    private static File scriptFolder;
+
     private Database database;
     private StateStore stateStore;
     private ScriptManager scriptManager;
@@ -19,15 +23,21 @@ public class Kitsune extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         plugin = this;
+        scriptFolder = new File(getDataFolder(), "scripts");
         
         Configuration.initDefaults();
         Dependencies.checkDependencies();
-
-        getServer().getPluginManager().registerEvents(this, this);
+        Dependencies.checkScriptsFolder();
 
         database = new Database();
         stateStore = new StateStore();
-        scriptManager = new ScriptManager();
+        
+        getServer().getPluginManager().registerEvents(this, this);
+        getServer().getScheduler().runTaskAsynchronously(this, () -> {
+            getLogger().info("Kitsune loading...");
+            scriptManager = new ScriptManager(this);
+            scriptManager.load();
+        });
     }
 
     @Override
@@ -45,11 +55,19 @@ public class Kitsune extends JavaPlugin implements Listener {
         return plugin;
     }
 
+    public static File getScriptFolder() {
+        return scriptFolder;
+    }
+
     public Database getDatabase() {
         return database;
     }
 
     public StateStore getStateStore() {
         return stateStore;
+    }
+
+    public ScriptManager getScriptManager() {
+        return scriptManager;
     }
 }

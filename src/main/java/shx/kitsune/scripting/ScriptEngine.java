@@ -17,6 +17,7 @@ import javax.script.ScriptException;
 import javax.tools.DiagnosticCollector;
 import javax.tools.JavaCompiler;
 import javax.tools.JavaFileObject;
+import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
 
 import org.bukkit.Bukkit;
@@ -42,6 +43,12 @@ public class ScriptEngine {
         }
 
         diagnostics = new DiagnosticCollector<>();
+        
+        StandardJavaFileManager fileManager = compiler.getStandardFileManager(diagnostics, null, null);
+        scriptMemoryManager = new ScriptMemoryManager(
+            fileManager, getClass().getClassLoader()
+        );
+
         reloadClassPath();
     }
 
