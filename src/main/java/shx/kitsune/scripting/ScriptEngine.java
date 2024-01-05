@@ -69,4 +69,17 @@ public class ScriptEngine {
             Str.format("Classpath added total of {} jars", classPath.size())
         );
     }
+
+    public Set<String> getNames() {
+        return classes.keySet();
+    }
+
+    // TODO: implement
+    // Class<?> getClassByName(final String name) {
+        
+    // }
+
+    Class<?> getClass(String name) {
+        return classes.get(name);
+    }
 }
