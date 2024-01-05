@@ -13,8 +13,8 @@ import org.bukkit.event.server.PluginEnableEvent;
 public class Kitsune extends JavaPlugin implements Listener {
     private static Plugin plugin;
     private Database database;
-    private ScriptManager scriptManager;
     private StateStore stateStore;
+    private ScriptManager scriptManager;
 
     @Override
     public void onEnable() {

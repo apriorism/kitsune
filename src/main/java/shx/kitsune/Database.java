@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+// TODO: implement timers for database and caching
 public class Database {
     private HikariDataSource dataSource;
 

@@ -32,7 +32,7 @@ public class StateStore {
                 scheduler.scheduleSyncDelayedTask(
                     Kitsune.getPlugin(), () -> {
                         remove(key, false);
-                    }
+                    }, expire
                 ), expire
             ));
         }
@@ -72,7 +72,7 @@ public class StateStore {
                 scheduler.scheduleSyncDelayedTask(
                     Kitsune.getPlugin(), () -> {
                         remove(key, false);
-                    }
+                    }, pairs.getExpires()
                 ), pairs.getExpires()
             ));
         }
